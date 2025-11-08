@@ -1,0 +1,36 @@
+---
+const {} = Astro.props;
+---
+
+<header>
+  <nav>
+    <a href="#o-mnie">O nas</a>
+    <a href="#kontakt">Kontakt</a>
+    <a href="#rozklad-jazdy">Rozkład jazdy</a>
+    <a href="#zespol">Zespół</a>
+    <a href="#cennik">Cennik</a>
+  </nav>
+</header>
+
+<style>
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    padding: 1rem;
+    z-index: 1000;
+  }
+  nav {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+  }
+  a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+  }
+</style>

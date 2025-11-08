@@ -1,0 +1,75 @@
+---
+// No props needed for this version
+---
+
+<div class="carousel relative w-full">
+    <div class="carousel-inner relative w-full overflow-hidden">
+        <slot />
+    </div>
+
+    <button class="carousel-prev absolute top-1/2 left-0 transform -translate-y-1/2 p-2">&#10094;</button>
+    <button class="carousel-next absolute top-1/2 right-0 transform -translate-y-1/2 p-2">&#10095;</button>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const carousels = document.querySelectorAll('.carousel');
+
+        carousels.forEach(carousel => {
+            const inner = carousel.querySelector('.carousel-inner') as HTMLElement | null;
+            const items = carousel.querySelectorAll('[data-carousel-item]');
+            const prevButton = carousel.querySelector('.carousel-prev');
+            const nextButton = carousel.querySelector('.carousel-next');
+            let currentIndex = 0;
+            let maxHeight = 0;
+
+            // Calculate max height of carousel items
+            if (inner) {
+                items.forEach(item => {
+                    const element = item as HTMLElement;
+                    const height = element.offsetHeight;
+                    if (height > maxHeight) {
+                        maxHeight = height;
+                    }
+                });
+
+                if (maxHeight > 0) {
+                    inner.style.minHeight = `${maxHeight}px`;
+                }
+            }
+
+
+            function showItem(index: number) {
+                items.forEach((item, i) => {
+                    const element = item as HTMLElement;
+                    if (i === index) {
+                        element.style.display = 'block';
+                    } else {
+                        element.style.display = 'none';
+                    }
+                });
+            }
+
+            if (items.length > 0) {
+                prevButton?.addEventListener('click', () => {
+                    currentIndex = (currentIndex - 1 + items.length) % items.length;
+                    showItem(currentIndex);
+                });
+
+                nextButton?.addEventListener('click', () => {
+                    currentIndex = (currentIndex + 1) % items.length;
+                    showItem(currentIndex);
+                });
+
+                showItem(currentIndex);
+            }
+        });
+    });
+</script>
+
+<style>
+    .carousel-inner > [data-carousel-item] {
+        display: none;
+    }
+</style>
+

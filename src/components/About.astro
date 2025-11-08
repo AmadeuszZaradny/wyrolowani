@@ -1,0 +1,34 @@
+---
+import { Image } from "astro:assets";
+import amandaOMnie from "../assets/amanda-o-mnie.jpeg";
+import test from "../assets/test.png";
+import Carousel from "./Carousel.astro";
+---
+
+<section id="o-mnie" class="bg-white dark:bg-gray-900">
+    <div class="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
+        <!-- <div class="flex justify-center items-center">
+            <Image class="rounded-lg max-w-sm" src={test} alt="Amanda - o mnie" />
+        </div> -->
+        <div class="font-light text-gray-500 sm:text-lg dark:text-gray-400">
+            <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">O mnie</h2>
+            <Carousel>
+                <div data-carousel-item>
+                    <p class="mb-4">Od dziecka lubiłam uczyć. Najpierw sprawdzałam się w nauce najbliższych, potem od 2009 zaczęłam prowadzić zajęcia grupowe na łyżwach w klubie KS Start-Wisła Toruń. Od 2016 prowadziłam zajęcia rolkowe w iceandroll w Toruniu, potem od 2022 utworzyłam sekcję w Przysieku. Od wielu lat moją pasją jest fitness, uwielbiam patrzeć na postępy każdej osoby, która przychodzi do mnie na zajęcia- jak przełamuje swoje bariery fizyczne i psychiczne. Największą satysfakcją jest dla mnie metamorfoza każdego uczestnika zajęć, pokonywanie strachu i ograniczeń żeby na każdych zajęciach zrobić coś więcej. Cieszę się że mogę zarażać kolejne osoby swoją pasją.</p>
+                    <p>Od najmłodszych lat aktywnie spędzałam czas. Najpierw jeździłam na łyżwach, po zakończeniu sportu wyczynowego, zajęłam się udziałem w zajęciach fitnessowych i jazdą na rolkach. Lubię czasem dołączać nowe aktywności, które stanowią dla mnie ruchowe wyzwanie, takie jak pole dance, samoobrona, bieganie.</p>
+                    <p class="mt-4">Często mówię, że wyjście z domu i wykonanie jakiegoś ruchu jest lepsze niż żaden ruch. Ruch to zdrowie i to nie tylko w sferze fizycznej, ale również psychicznej.</p>
+                    <p class="mt-4">Przekazuję swoim podopiecznym podejście: „Wyjdź z domu, wyprowadź swoje problemy na spacer a może się okazać, że je zgubisz po drodze”.</p>
+                </div>
+                <div data-carousel-item>
+                    <ul class="list-disc list-inside">
+                        <li class="mb-2">Instruktor sportu- specjalizacja fitness- od 2018</li>
+                        <li class="mb-2">Certyfikaty Szkoleń: grupowy trening funkcjonalny, stretching- 2018</li>
+                        <li class="mb-2">Trener personalny – od 2023</li>
+                        <li class="mb-2">Ukończone szkolenia: Pilates Level I i Level II</li>
+                        <li class="mb-2">Studia magisterskie kierunek: prawo</li>
+                    </ul>
+                </div>
+            </Carousel>
+        </div>
+    </div>
+</section>

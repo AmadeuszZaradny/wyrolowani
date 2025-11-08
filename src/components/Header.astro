@@ -1,16 +1,45 @@
 ---
+import logo from "../assets/wyrolowani-logo.jpg";
 const {} = Astro.props;
 ---
 
 <header>
-  <nav>
-    <a href="#o-mnie">O nas</a>
-    <a href="#kontakt">Kontakt</a>
-    <a href="#rozklad-jazdy">Rozkład jazdy</a>
-    <a href="#zespol">Zespół</a>
-    <a href="#cennik">Cennik</a>
-  </nav>
+  <div class="logo">
+    <a href="/">
+      <img src={logo.src} alt="wyrolowani logo" />
+    </a>
+  </div>
+  <button class="hamburger" aria-label="Toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <div class="nav-wrapper">
+    <nav>
+      <a href="#o-mnie">O mnie</a>
+      <a href="#rozklad-jazdy">Rozkład jazdy</a>
+      <a href="#zespol">Zespół</a>
+      <a href="#cennik">Cennik</a>
+      <a href="#regulamin">Regulamin</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <div class="social">
+      <a
+        href="https://www.facebook.com/profile.php?id=61550615462627"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        FB
+      </a>
+    </div>
+  </div>
 </header>
+
+<script>
+  document.querySelector(".hamburger")?.addEventListener("click", () => {
+    document.querySelector(".nav-wrapper")?.classList.toggle("open");
+  });
+</script>
 
 <style>
   header {
@@ -22,15 +51,80 @@ const {} = Astro.props;
     color: white;
     padding: 1rem;
     z-index: 1000;
-  }
-  nav {
     display: flex;
-    justify-content: center;
-    gap: 2rem;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logo img {
+    height: 50px;
   }
   a {
     color: white;
     text-decoration: none;
     font-size: 1.2rem;
   }
+  .social a {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  .hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+    position: relative;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 5px 0;
+  }
+
+  .nav-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  nav {
+    display: flex;
+    gap: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .hamburger {
+      display: block;
+    }
+
+    .nav-wrapper {
+      position: fixed;
+      top: 0;
+      right: 0;
+      background-color: #333;
+      width: 100%;
+      height: 100vh;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transform: translateX(100%);
+      transition: transform 0.3s ease-in-out;
+      z-index: 1000;
+    }
+
+    .nav-wrapper.open {
+      transform: translateX(0);
+    }
+
+    nav {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
 </style>
+

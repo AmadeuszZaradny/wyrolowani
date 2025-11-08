@@ -4,12 +4,102 @@ const {} = Astro.props;
 
 <section id="rozklad-jazdy">
   <h2>Rozkład jazdy</h2>
-  <p>Tutaj znajdzie się treść sekcji rozkład jazdy.</p>
+  <div class="schedule-container">
+    <h3 class="start-date">
+      Zajęcia grupowe trwają od września i końca czerwca każdego roku.
+    </h3>
+    <div class="event-grid">
+      <div class="event">
+        <p class="event-date"><strong>Start: 2 września, 19:00</strong></p>
+        <p class="event-title">Zajęcia aerobowe</p>
+        <p class="event-description">
+          Kształtujące sylwetkę, średnia intensywność
+        </p>
+      </div>
+      <div class="event">
+        <p class="event-date"><strong>4 września, 18:00</strong></p>
+        <p class="event-title">Grupowe zajęcia rolkowe</p>
+        <p class="event-description">
+          Poziomy: początkujący i średniozaawansowani, wiek: 5+
+        </p>
+      </div>
+      <div class="event">
+        <p class="event-date"><strong>4 września, 19:00</strong></p>
+        <p class="event-title">Pilates</p>
+        <p class="event-description">
+          Niska intensywność, rozciągająco-wzmacniające, body & mind
+        </p>
+      </div>
+    </div>
+    <div class="location">
+      <h4>Miejsce spotkań:</h4>
+      <p>Przysiek, Leśna 1</p>
+    </div>
+  </div>
 </section>
 
 <style>
   section {
     min-height: 100vh;
-    padding-top: 5rem; /* To avoid content being hidden behind the fixed header */
+    padding: 7rem 2rem;
+    text-align: center;
+    background-color: #f9f9f9;
+  }
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #333;
+  }
+  .schedule-container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .start-date {
+    font-size: 1.5rem;
+    color: #e63946;
+    margin-bottom: 2rem;
+  }
+  .event-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+  .event {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  .event:hover {
+    transform: translateY(-5px);
+  }
+  .event-date {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+  }
+  .event-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #1d3557;
+    margin-bottom: 1rem;
+  }
+  .event-description {
+    font-size: 1rem;
+    color: #457b9d;
+  }
+  .location {
+    margin-top: 2rem;
+  }
+  .location h4 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 1rem;
+  }
+  .location p {
+    font-size: 1.2rem;
+    color: #1d3557;
   }
 </style>

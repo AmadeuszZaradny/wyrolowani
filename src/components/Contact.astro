@@ -6,7 +6,7 @@ const {} = Astro.props;
 <footer id="kontakt">
   <div class="contact-info">
     <div class="contact-item">
-      <a href="mailto:example@email.com">EMAIL</a>
+      <a href="mailto:amanda.mal@interia.pl">EMAIL</a>
     </div>
     <div class="contact-item">
       <a href="tel:+48731614897">NUMER TELEFONU</a>
@@ -19,14 +19,14 @@ const {} = Astro.props;
     <div class="logo">
       <img src={logo.src} alt="wyrolowani logo" />
     </div>
-    <p>Wyrolowani - Wszelkie prawa zastrzeżone &copy; 2022-2025 .</p>
+    <p>Wyrolowani - Wszelkie prawa zastrzeżone &copy; 2022-2025.</p>
   </div>
 </footer>
 
 <style>
   footer {
-    background-color: #333;
-    color: white;
+    background-color: #f3f4f7;
+    color: #333;
     padding: 2rem 1rem;
     text-align: center;
   }
@@ -40,7 +40,7 @@ const {} = Astro.props;
 
   .contact-item a {
     text-decoration: none;
-    color: white;
+    color: #333;
     font-size: 1.2rem;
   }
 
@@ -55,5 +55,19 @@ const {} = Astro.props;
 
   .logo img {
     height: 50px;
+  }
+
+  a {
+    color: #333;
+    text-decoration: none;
+    font-weight: lighter;
+    opacity: 0.8;
+  }
+
+  p {
+    color: #333;
+    text-decoration: none;
+    font-weight: lighter;
+    opacity: 0.8;
   }
 </style>

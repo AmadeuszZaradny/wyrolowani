@@ -2,74 +2,153 @@
 // No props needed for this version
 ---
 
-<div class="carousel relative w-full">
-    <div class="carousel-inner relative w-full overflow-hidden">
+<section class="carousel-section">
+  <div class="carousel">
+    <button class="carousel-prev">&#10094;</button>
+    <div class="carousel-viewport">
+      <div class="carousel-inner">
         <slot />
+      </div>
     </div>
-
-    <button class="carousel-prev absolute top-1/2 left-0 transform -translate-y-1/2 p-2">&#10094;</button>
-    <button class="carousel-next absolute top-1/2 right-0 transform -translate-y-1/2 p-2">&#10095;</button>
-</div>
+    <button class="carousel-next">&#10095;</button>
+  </div>
+</section>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const carousels = document.querySelectorAll('.carousel');
+  document.addEventListener("DOMContentLoaded", function () {
+    const carousels = document.querySelectorAll(".carousel");
 
-        carousels.forEach(carousel => {
-            const inner = carousel.querySelector('.carousel-inner') as HTMLElement | null;
-            const items = carousel.querySelectorAll('[data-carousel-item]');
-            const prevButton = carousel.querySelector('.carousel-prev');
-            const nextButton = carousel.querySelector('.carousel-next');
-            let currentIndex = 0;
-            let maxHeight = 0;
+    carousels.forEach((carousel) => {
+      const inner = carousel.querySelector(".carousel-inner") as HTMLElement | null;
+      if (!inner) return;
 
-            // Calculate max height of carousel items
-            if (inner) {
-                items.forEach(item => {
-                    const element = item as HTMLElement;
-                    const height = element.offsetHeight;
-                    if (height > maxHeight) {
-                        maxHeight = height;
-                    }
-                });
+      const items = Array.from(
+        carousel.querySelectorAll("[data-carousel-item]")
+      ) as HTMLElement[];
+      const prevButton = carousel.querySelector(".carousel-prev");
+      const nextButton = carousel.querySelector(".carousel-next");
+      let currentIndex = 0;
 
-                if (maxHeight > 0) {
-                    inner.style.minHeight = `${maxHeight}px`;
-                }
+      function updateCarousel() {
+        if (inner) {
+          const offset = -currentIndex * 100;
+          inner.style.transform = `translateX(${offset}%)`;
+        }
+      }
+
+      if (items.length > 0) {
+        // Clone first and last items for infinite loop effect
+        const firstClone = items[0].cloneNode(true) as HTMLElement;
+        const lastClone = items[items.length - 1].cloneNode(true) as HTMLElement;
+        
+        inner.appendChild(firstClone);
+        inner.insertBefore(lastClone, items[0]);
+
+        const allItems = Array.from(inner.children) as HTMLElement[];
+        inner.style.width = `${allItems.length * 100}%`;
+        allItems.forEach(item => {
+            item.style.width = `${100 / allItems.length}%`;
+        });
+
+        currentIndex = 1; // Start at the first real item
+        inner.style.transform = `translateX(-${currentIndex * (100 / allItems.length)}%)`;
+
+
+        prevButton?.addEventListener("click", () => {
+            if (inner.style.transition.includes('none')) {
+                inner.style.transition = 'transform 0.5s ease-in-out';
             }
+            currentIndex--;
+            updateCarouselBasedOnIndex();
+        });
 
-
-            function showItem(index: number) {
-                items.forEach((item, i) => {
-                    const element = item as HTMLElement;
-                    if (i === index) {
-                        element.style.display = 'block';
-                    } else {
-                        element.style.display = 'none';
-                    }
-                });
+        nextButton?.addEventListener("click", () => {
+            if (inner.style.transition.includes('none')) {
+                inner.style.transition = 'transform 0.5s ease-in-out';
             }
+            currentIndex++;
+            updateCarouselBasedOnIndex();
+        });
 
-            if (items.length > 0) {
-                prevButton?.addEventListener('click', () => {
-                    currentIndex = (currentIndex - 1 + items.length) % items.length;
-                    showItem(currentIndex);
-                });
-
-                nextButton?.addEventListener('click', () => {
-                    currentIndex = (currentIndex + 1) % items.length;
-                    showItem(currentIndex);
-                });
-
-                showItem(currentIndex);
+        inner.addEventListener('transitionend', () => {
+            if (currentIndex === 0) {
+                inner.style.transition = 'none';
+                currentIndex = items.length;
+                inner.style.transform = `translateX(-${currentIndex * (100 / allItems.length)}%)`;
+            }
+            if (currentIndex === allItems.length - 1) {
+                inner.style.transition = 'none';
+                currentIndex = 1;
+                inner.style.transform = `translateX(-${currentIndex * (100 / allItems.length)}%)`;
             }
         });
+
+        function updateCarouselBasedOnIndex() {
+            const offset = -currentIndex * (100 / allItems.length);
+            if (inner) inner.style.transform = `translateX(${offset}%)`;
+        }
+      }
     });
+  });
 </script>
 
 <style>
-    .carousel-inner > [data-carousel-item] {
-        display: none;
-    }
+  .carousel-section {
+    padding: 4rem 2rem;
+    background-color: #f9f9f9;
+    text-align: center;
+  }
+
+  .carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+    gap: 1rem;
+    position: relative;
+  }
+
+  .carousel-viewport {
+    overflow: hidden;
+    width: 100%;
+    flex: 1;
+  }
+
+  .carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 100%;
+  }
+
+  .carousel-inner > :global([data-carousel-item]) {
+    flex-shrink: 0;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .carousel-prev,
+  .carousel-next {
+    background-color: rgba(29, 53, 87, 0.5);
+    color: white;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    transition: background-color 0.3s ease;
+    z-index: 10;
+    flex-shrink: 0;
+  }
+
+  .carousel-prev:hover,
+  .carousel-next:hover {
+    background-color: #1d3557;
+  }
 </style>
 

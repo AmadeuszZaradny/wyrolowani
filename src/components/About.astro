@@ -1,9 +1,17 @@
 ---
 import { Image } from "astro:assets";
 import Carousel from "./Carousel.astro";
+import BackgroundSlideshow from './BackgroundSlideshow.astro';
+import image1 from '../assets/image1.jpeg';
+import image4 from '../assets/image4.jpeg';
+import image14 from '../assets/image14.jpeg';
+
+const images = [image1, image4, image14];
 ---
 
 <section id="o-mnie">
+    <BackgroundSlideshow images={images} />
+    <div class="content-wrapper">
     <h2>O mnie</h2>
     <div class="flex flex-row gap-4">
         <div class="flex-1 min-w-0">
@@ -26,6 +34,7 @@ import Carousel from "./Carousel.astro";
             </Carousel>
         </div>
     </div>
+    </div>
 </section>
 
 <style>
@@ -33,7 +42,12 @@ import Carousel from "./Carousel.astro";
     min-height: 100vh;
     padding: 7rem 2rem;
     text-align: center;
-    background-color: #333;
+    position: relative;
+    overflow: hidden;
+  }
+  .content-wrapper {
+    position: relative;
+    z-index: 3;
   }
   h2 {
     font-size: 2.5rem;

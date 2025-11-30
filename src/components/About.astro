@@ -1,16 +1,12 @@
 ---
 import { Image } from "astro:assets";
-import amandaOMnie from "../assets/amanda-o-mnie.jpeg";
 import Carousel from "./Carousel.astro";
 ---
 
-<section id="o-mnie" class="bg-white dark:bg-gray-900">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
-        <!-- <div class="flex justify-center items-center">
-            <Image class="rounded-lg max-w-full h-auto" src={amandaOMnie} alt="Amanda - o mnie" />
-        </div> -->
-        <div class="font-light text-gray-500 sm:text-lg dark:text-gray-400">
-            <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">O mnie</h2>
+<section id="o-mnie">
+    <h2>O mnie</h2>
+    <div class="flex flex-row gap-4">
+        <div class="flex-1 min-w-0">
             <Carousel>
                 <div data-carousel-item>
                     <p class="mb-4">Od dziecka lubiłam uczyć. Najpierw sprawdzałam się w nauce najbliższych, potem od 2009 zaczęłam prowadzić zajęcia grupowe na łyżwach w klubie KS Start-Wisła Toruń. Od 2016 prowadziłam zajęcia rolkowe w iceandroll w Toruniu, potem od 2022 utworzyłam sekcję w Przysieku. Od wielu lat moją pasją jest fitness, uwielbiam patrzeć na postępy każdej osoby, która przychodzi do mnie na zajęcia- jak przełamuje swoje bariery fizyczne i psychiczne. Największą satysfakcją jest dla mnie metamorfoza każdego uczestnika zajęć, pokonywanie strachu i ograniczeń żeby na każdych zajęciach zrobić coś więcej. Cieszę się że mogę zarażać kolejne osoby swoją pasją.</p>
@@ -31,3 +27,20 @@ import Carousel from "./Carousel.astro";
         </div>
     </div>
 </section>
+
+<style>
+  section {
+    min-height: 100vh;
+    padding: 7rem 2rem;
+    text-align: center;
+    background-color: #f3f4f7;
+  }
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #333;
+  }
+  [data-carousel-item] {
+    text-align: left;
+  }
+</style>

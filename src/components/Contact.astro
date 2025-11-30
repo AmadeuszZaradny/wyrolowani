@@ -6,13 +6,28 @@ const {} = Astro.props;
 <footer id="kontakt">
   <div class="contact-info">
     <div class="contact-item">
-      <a href="mailto:amanda.mal@interia.pl">EMAIL</a>
+      <a href="mailto:amanda.mal@interia.pl">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+        </svg>
+        EMAIL
+      </a>
     </div>
     <div class="contact-item">
-      <a href="tel:+48731614897">NUMER TELEFONU</a>
+      <a href="tel:+48731614897">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.44-5.15-3.75-6.59-6.59l1.97-1.57c.27-.27.35-.65.24-1.01-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3.3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .75-.65.75-1.19v-3.44c0-.54-.45-.99-.99-.99z"/>
+        </svg>
+        NUMER TELEFONU
+      </a>
     </div>
     <div class="contact-item">
-      <a href="https://www.facebook.com/profile.php?id=61550615462627" target="_blank">FACEBOOK</a>
+      <a href="https://www.facebook.com/profile.php?id=61550615462627" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path>
+        </svg>
+        FACEBOOK
+      </a>
     </div>
   </div>
   <div class="footer-bottom">
@@ -42,6 +57,9 @@ const {} = Astro.props;
     text-decoration: none;
     color: #333;
     font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
   }
 
   .footer-bottom {

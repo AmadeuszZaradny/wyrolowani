@@ -142,5 +142,36 @@
   .carousel-next:hover {
     background-color: #1d3557;
   }
+
+  @media (max-width: 768px) {
+    .carousel {
+      gap: 0.5rem;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+    .carousel-viewport {
+      min-width: 0;
+    }
+    .carousel-prev,
+    .carousel-next {
+      width: 40px;
+      height: 40px;
+      font-size: 1.2rem;
+      min-width: 40px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .carousel {
+      gap: 0.25rem;
+    }
+    .carousel-prev,
+    .carousel-next {
+      width: 35px;
+      height: 35px;
+      font-size: 1rem;
+      min-width: 35px;
+    }
+  }
 </style>
 

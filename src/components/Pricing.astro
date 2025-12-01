@@ -11,8 +11,12 @@ const {} = Astro.props;
 
 <section id="cennik">
   <BackgroundSlideshow images={images} />
+  <div class="header-bar">
+    <div class="header-content">
+      <h2>Cennik</h2>
+    </div>
+  </div>
   <div class="content-wrapper">
-  <h2>Cennik</h2>
   <div class="pricing-container">
     <div class="event-grid">
       <div class="event">
@@ -39,20 +43,44 @@ const {} = Astro.props;
 <style>
   section {
     min-height: 100vh;
-    padding: 7rem 2rem;
+    padding: 7rem 0 2rem 0;
     text-align: center;
     position: relative;
     overflow: hidden;
   }
+
+  .header-bar {
+    background-color: #f3f4f7;
+    opacity: 0.75;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    padding: 2rem 0;
+    z-index: 3;
+    margin-bottom: 3rem;
+  }
+
+  .header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
   .content-wrapper {
     position: relative;
     z-index: 3;
+    padding: 0 2rem;
   }
+  
   h2 {
     font-size: 2.5rem;
-    margin-bottom: 2rem;
+    margin: 0;
     color: #333;
   }
+  
   .pricing-container {
     max-width: 900px;
     margin: 0 auto;

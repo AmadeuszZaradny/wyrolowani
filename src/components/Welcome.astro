@@ -2,6 +2,7 @@
 import BackgroundSlideshow from './BackgroundSlideshow.astro';
 import { Image } from 'astro:assets';
 import logo from '../assets/full-logo.png';
+import logoMobile from '../assets/logo-only-roll.png';
 import image1 from '../assets/image1.jpeg';
 import image4 from '../assets/image4.jpeg';
 import image14 from '../assets/image14.jpeg';
@@ -12,7 +13,8 @@ const images = [image1, image4, image14];
 <section id="welcome">
   <BackgroundSlideshow images={images} />
   <div class="logo-container">
-    <Image src={logo} alt="Wyrolowani Logo" />
+    <Image src={logo} alt="Wyrolowani Logo" class="logo-desktop" />
+    <Image src={logoMobile} alt="Wyrolowani Logo" class="logo-mobile" />
   </div>
 </section>
 
@@ -38,5 +40,19 @@ const images = [image1, image4, image14];
     height: 100%;
     object-fit: cover;
     opacity: 0.90;
+  }
+
+  .logo-mobile {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .logo-desktop {
+      display: none;
+    }
+
+    .logo-mobile {
+      display: block;
+    }
   }
 </style>

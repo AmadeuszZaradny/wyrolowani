@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://wyrolowani-torun.pl/sitemap-index.xml
+Sitemap: https://wyrolowani-torun.pl/sitemap.xml

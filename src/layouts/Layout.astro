@@ -1,22 +1,30 @@
+---
+import Header from '../components/Header.astro';
+import '@fontsource/kanit';
+---
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<!-- <link rel="icon" type="image/svg+xml" href="/favicon.svg" /> -->
+		<link rel="icon" type="image/png" href="/logo-only-roll.png" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Wyrolowani</title>
 	</head>
 	<body>
+		<Header />
 		<slot />
 	</body>
 </html>
 
-<style>
-	html,
+<style is:global>
+	html {
+		scroll-behavior: smooth;
+	}
 	body {
 		margin: 0;
 		width: 100%;
 		height: 100%;
+		font-family: 'Kanit', sans-serif;
 	}
 </style>

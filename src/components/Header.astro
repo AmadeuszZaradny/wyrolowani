@@ -1,0 +1,156 @@
+---
+import logo from "../assets/full-logo.png";
+const {} = Astro.props;
+---
+
+<header>
+  <div class="logo">
+    <a href="/">
+      <img src={logo.src} alt="wyrolowani logo" />
+    </a>
+  </div>
+  <button class="hamburger" aria-label="Toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <div class="nav-wrapper">
+    <nav>
+      <a href="/#o-mnie">O mnie</a>
+      <a href="/#rozklad-jazdy">Rozkład jazdy</a>
+      <!-- <a href="#zespol">Zespół</a> -->
+      <a href="/#cennik">Cennik</a>
+      <a href="/#kontakt">Kontakt</a>
+      <a href="/regulamin">Regulamin</a>
+    </nav>
+    <div class="social">
+      <a
+        href="https://www.facebook.com/profile.php?id=61550615462627"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Facebook"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          ><path
+            d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"
+          ></path></svg
+        >
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const hamburger = document.querySelector(".hamburger");
+  const navWrapper = document.querySelector(".nav-wrapper");
+
+  hamburger?.addEventListener("click", () => {
+    navWrapper?.classList.toggle("open");
+  });
+
+  document.querySelectorAll(".nav-wrapper nav a").forEach((link) => {
+    link.addEventListener("click", () => {
+      navWrapper?.classList.remove("open");
+    });
+  });
+</script>
+
+<style>
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f3f4f7;
+    color: white;
+    padding: 1rem;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logo img {
+    height: 50px;
+  }
+  a {
+    color: #333;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: lighter;
+    opacity: 0.8;
+  }
+  .social {
+    padding-right: 2.5rem;
+  }
+
+  .social a {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  .hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-right: 2.5rem;
+    z-index: 1001;
+    position: relative;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    margin: 5px 0;
+  }
+
+  .nav-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  nav {
+    display: flex;
+    gap: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .hamburger {
+      display: block;
+    }
+
+    .nav-wrapper {
+      position: fixed;
+      top: 0;
+      right: 0;
+      background-color: #f3f4f7;
+      width: 100%;
+      height: 100vh;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transform: translateX(100%);
+      transition: transform 0.3s ease-in-out;
+      z-index: 1000;
+    }
+
+    .nav-wrapper.open {
+      transform: translateX(0);
+    }
+
+    nav {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>
+

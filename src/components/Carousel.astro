@@ -1,0 +1,177 @@
+---
+// No props needed for this version
+---
+
+<div class="carousel">
+    <button class="carousel-prev">&#10094;</button>
+    <div class="carousel-viewport">
+      <div class="carousel-inner">
+        <slot />
+      </div>
+    </div>
+    <button class="carousel-next">&#10095;</button>
+  </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const carousels = document.querySelectorAll(".carousel");
+
+    carousels.forEach((carousel) => {
+      const inner = carousel.querySelector(".carousel-inner") as HTMLElement | null;
+      if (!inner) return;
+
+      const items = Array.from(
+        carousel.querySelectorAll("[data-carousel-item]")
+      ) as HTMLElement[];
+      const prevButton = carousel.querySelector(".carousel-prev");
+      const nextButton = carousel.querySelector(".carousel-next");
+      let currentIndex = 0;
+
+      function updateCarousel() {
+        if (inner) {
+          const offset = -currentIndex * 100;
+          inner.style.transform = `translateX(${offset}%)`;
+        }
+      }
+
+      if (items.length > 0) {
+        // Clone first and last items for infinite loop effect
+        const firstClone = items[0].cloneNode(true) as HTMLElement;
+        const lastClone = items[items.length - 1].cloneNode(true) as HTMLElement;
+        
+        inner.appendChild(firstClone);
+        inner.insertBefore(lastClone, items[0]);
+
+        const allItems = Array.from(inner.children) as HTMLElement[];
+        inner.style.width = `${allItems.length * 100}%`;
+        allItems.forEach(item => {
+            item.style.width = `${100 / allItems.length}%`;
+        });
+
+        currentIndex = 1; // Start at the first real item
+        inner.style.transform = `translateX(-${currentIndex * (100 / allItems.length)}%)`;
+
+
+        prevButton?.addEventListener("click", () => {
+            if (inner.style.transition.includes('none')) {
+                inner.style.transition = 'transform 0.5s ease-in-out';
+            }
+            currentIndex--;
+            updateCarouselBasedOnIndex();
+        });
+
+        nextButton?.addEventListener("click", () => {
+            if (inner.style.transition.includes('none')) {
+                inner.style.transition = 'transform 0.5s ease-in-out';
+            }
+            currentIndex++;
+            updateCarouselBasedOnIndex();
+        });
+
+        inner.addEventListener('transitionend', () => {
+            if (currentIndex === 0) {
+                inner.style.transition = 'none';
+                currentIndex = items.length;
+                inner.style.transform = `translateX(-${currentIndex * (100 / allItems.length)}%)`;
+            }
+            if (currentIndex === allItems.length - 1) {
+                inner.style.transition = 'none';
+                currentIndex = 1;
+                inner.style.transform = `translateX(-${currentIndex * (100 / allItems.length)}%)`;
+            }
+        });
+
+        function updateCarouselBasedOnIndex() {
+            const offset = -currentIndex * (100 / allItems.length);
+            if (inner) inner.style.transform = `translateX(${offset}%)`;
+        }
+      }
+    });
+  });
+</script>
+
+<style>
+  .carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+    gap: 1rem;
+    position: relative;
+  }
+
+  .carousel-viewport {
+    overflow: hidden;
+    width: 100%;
+    flex: 1;
+  }
+
+  .carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 100%;
+  }
+
+  .carousel-inner > :global([data-carousel-item]) {
+    flex-shrink: 0;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .carousel-prev,
+  .carousel-next {
+    background-color: rgba(29, 53, 87, 0.5);
+    color: white;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    transition: background-color 0.3s ease;
+    z-index: 10;
+    flex-shrink: 0;
+  }
+
+  .carousel-prev:hover,
+  .carousel-next:hover {
+    background-color: #1d3557;
+  }
+
+  @media (max-width: 768px) {
+    .carousel {
+      gap: 0.5rem;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+    .carousel-viewport {
+      min-width: 0;
+    }
+    .carousel-prev,
+    .carousel-next {
+      width: 40px;
+      height: 40px;
+      font-size: 1.2rem;
+      min-width: 40px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .carousel {
+      gap: 0.25rem;
+    }
+    .carousel-prev,
+    .carousel-next {
+      width: 35px;
+      height: 35px;
+      font-size: 1rem;
+      min-width: 35px;
+    }
+  }
+</style>
+

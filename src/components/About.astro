@@ -1,0 +1,120 @@
+---
+import { Image } from "astro:assets";
+import Carousel from "./Carousel.astro";
+import BackgroundSlideshow from './BackgroundSlideshow.astro';
+import image1 from '../assets/image1.jpeg';
+import image4 from '../assets/image4.jpeg';
+import image14 from '../assets/image14.jpeg';
+import amanda from '../assets/amanda-o-mnie.jpeg';
+
+const images = [image1, image4, image14];
+---
+
+<section id="o-mnie">
+    <!-- <BackgroundSlideshow images={images} /> -->
+    <div class="content-wrapper">
+    <h2>O mnie</h2>
+    <div class="flex flex-row gap-8 items-start">
+        <div class="image-square">
+            <Image src={amanda} alt="Amanda Malkiewicz" class="square-image" />
+        </div>
+        <div class="flex-1 min-w-0">
+            <Carousel>
+                <div data-carousel-item>
+                    <p class="mb-4">Od dziecka lubiłam uczyć. Najpierw sprawdzałam się w nauce najbliższych, potem od 2009 zaczęłam prowadzić zajęcia grupowe na łyżwach w klubie KS Start-Wisła Toruń. Od 2016 prowadziłam zajęcia rolkowe w iceandroll w Toruniu, potem od 2022 utworzyłam sekcję w Przysieku. Od wielu lat moją pasją jest fitness, uwielbiam patrzeć na postępy każdej osoby, która przychodzi do mnie na zajęcia- jak przełamuje swoje bariery fizyczne i psychiczne. Największą satysfakcją jest dla mnie metamorfoza każdego uczestnika zajęć, pokonywanie strachu i ograniczeń żeby na każdych zajęciach zrobić coś więcej. Cieszę się że mogę zarażać kolejne osoby swoją pasją.</p>
+                    <p>Od najmłodszych lat aktywnie spędzałam czas. Najpierw jeździłam na łyżwach, po zakończeniu sportu wyczynowego, zajęłam się udziałem w zajęciach fitnessowych i jazdą na rolkach. Lubię czasem dołączać nowe aktywności, które stanowią dla mnie ruchowe wyzwanie, takie jak pole dance, samoobrona, bieganie.</p>
+                    <p class="mt-4">Często mówię, że wyjście z domu i wykonanie jakiegoś ruchu jest lepsze niż żaden ruch. Ruch to zdrowie i to nie tylko w sferze fizycznej, ale również psychicznej.</p>
+                    <p class="mt-4">Przekazuję swoim podopiecznym podejście: „Wyjdź z domu, wyprowadź swoje problemy na spacer a może się okazać, że je zgubisz po drodze”.</p>
+                </div>
+                <div data-carousel-item>
+                    <ul class="list-disc list-inside">
+                        <li class="mb-2">Instruktor sportu- specjalizacja fitness- od 2018</li>
+                        <li class="mb-2">Certyfikaty Szkoleń: grupowy trening funkcjonalny, stretching- 2018</li>
+                        <li class="mb-2">Trener personalny – od 2023</li>
+                        <li class="mb-2">Ukończone szkolenia: Pilates Level I i Level II</li>
+                        <li class="mb-2">Studia magisterskie kierunek: prawo</li>
+                    </ul>
+                </div>
+            </Carousel>
+        </div>
+    </div>
+    </div>
+</section>
+
+<style>
+  section {
+    min-height: 100vh;
+    padding: 7rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    background-color: #f3f4f7;
+  }
+  .content-wrapper {
+    position: relative;
+    z-index: 3;
+  }
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #333;
+  }
+  .flex {
+    display: flex;
+  }
+  .flex-row {
+    flex-direction: row;
+    align-items: center;
+  }
+  .gap-8 {
+    gap: 2rem;
+  }
+  .items-start {
+    align-items: center;
+  }
+  .flex-1 {
+    flex: 1;
+  }
+  .min-w-0 {
+    min-width: 0;
+  }
+  [data-carousel-item] {
+    text-align: left;
+    padding-top: 0;
+    margin-top: 0;
+  }
+  .image-square {
+    width: 300px;
+    flex-shrink: 0;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    align-self: flex-start;
+  }
+  .square-image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  @media (max-width: 768px) {
+    section {
+      padding: 7rem 1rem;
+      overflow: visible;
+    }
+    .flex-row {
+      flex-direction: column;
+    }
+    .image-square {
+      width: 100%;
+      max-width: 300px;
+      margin: 0 auto 2rem;
+    }
+    .content-wrapper {
+      overflow: visible;
+    }
+    .flex-1 {
+      width: 100%;
+      overflow: visible;
+    }
+  }
+</style>

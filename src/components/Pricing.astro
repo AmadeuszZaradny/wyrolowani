@@ -1,0 +1,137 @@
+---
+import BackgroundSlideshow from './BackgroundSlideshow.astro';
+import image1 from '../assets/image1.jpeg';
+import image4 from '../assets/image4.jpeg';
+import image14 from '../assets/image14.jpeg';
+
+const images = [image1, image4, image14];
+const {} = Astro.props;
+---
+
+
+<section id="cennik">
+  <BackgroundSlideshow images={images} />
+  <div class="header-bar">
+    <div class="header-content">
+      <h2>Cennik</h2>
+    </div>
+  </div>
+  <div class="content-wrapper">
+  <div class="pricing-container">
+    <div class="event-grid">
+      <div class="event">
+        <p class="event-date"><strong>ROLKI- KARNET 4 WEJŚCIA</strong></p>
+        <p class="event-title">130 ZŁ</p>
+      </div>
+      <div class="event">
+        <p class="event-date"><strong>ROLKI JEDNORAZOWE WEJŚCIE</strong></p>
+        <p class="event-title">45 ZŁ</p>
+      </div>
+      <div class="event">
+        <p class="event-date"><strong>FITNESS KARNET 4 WEJŚCIA</strong></p>
+        <p class="event-title">85 ZŁ</p>
+      </div>
+      <div class="event">
+        <p class="event-date"><strong>FITNESS KARNET 8 WEJŚĆ</strong></p>
+        <p class="event-title">140 ZŁ</p>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+<style>
+  section {
+    min-height: 100vh;
+    padding: 7rem 0 2rem 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header-bar {
+    background-color: #f3f4f7;
+    opacity: 0.75;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    padding: 2rem 0;
+    z-index: 3;
+    margin-bottom: 3rem;
+  }
+
+  .header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .content-wrapper {
+    position: relative;
+    z-index: 3;
+    padding: 0 2rem;
+  }
+  
+  h2 {
+    font-size: 2.5rem;
+    margin: 0;
+    color: #333;
+  }
+  
+  .pricing-container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .start-date {
+    font-size: 1.5rem;
+    color: #e63946;
+    margin-bottom: 2rem;
+  }
+  .event-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+  .event {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    opacity: 0.75;
+  }
+  .event:hover {
+    transform: translateY(-5px);
+  }
+  .event-date {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+  }
+  .event-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #1d3557;
+    margin-bottom: 1rem;
+  }
+  .event-description {
+    font-size: 1rem;
+    color: #457b9d;
+  }
+  .location {
+    margin-top: 2rem;
+  }
+  .location h4 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 1rem;
+  }
+  .location p {
+    font-size: 1.2rem;
+    color: #1d3557;
+  }
+</style>
